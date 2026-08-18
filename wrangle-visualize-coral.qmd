@@ -52,16 +52,17 @@ ggplot(
   )
 
 
-moorea_plot |> 
-    mutate(Percent_Cover = Percent_Cover / 100) |> 
-        summarize(
-    avg_size = mean(Percent_Cover, na.rm = TRUE),
-    stan_dev = sd(Percent_Cover, na.rm = TRUE),
-    .by = c(Habitat, Depth, Taxa))
+moorea_plot |> # data frame
+    mutate(Percent_Cover = Percent_Cover / 100) |> # nutate percent cover by dividing by 100
+        summarize( # summarize
+    avg_size = mean(Percent_Cover, na.rm = TRUE), # percent cover mean
+    stan_dev = sd(Percent_Cover, na.rm = TRUE), # percent cover standard deviation
+    .by = c(Habitat, Depth, Taxa)) # .by 
 
 
 ```
 
 
 
-## Exercise 3. Short summary
+## Exercise 3. Findings 
+First, the library(tidyverse) and the csv file containing the Moorea Coral dataset were downloaded and read. Then, a boxplot is visualized by utilizing the aesthetic features to give the x-and-y axis, which are categorized respectively by habitat and percent cover for Acropora and Pocillopora. Lastly, the mean and standard deviation are shown grouped by habitat, depth, and taxa. 
