@@ -1,0 +1,67 @@
+---
+title: "Moorea Coral Data Wrangle"
+author: 
+    name: "Monique Hernandez"
+    affiliation: University of California, Santa Barbara
+date: "Augustt 18, 2026"
+format:
+  html:
+    toc: true
+execute:
+  message: false
+  warning: false
+---
+
+[click here for github link](https://github.com/moniqueallyson/eds221day6) 
+
+# Read Data
+## Moorea Coral Data Frame
+```{r, message=FALSE}
+
+library(tidyverse)
+
+moorea_coral <- read.csv("data/moorea_coral.csv", na = c("", "NA", "ND")) # read moorea_coral.csv and remove missing data
+
+glimpse(moorea_coral) # preview dataset
+
+```
+
+# Visualize Data
+## Exericse 1 & 2. Percent Cover by Habitat, Site, and Taxa
+```{r}
+
+
+moorea_plot <- moorea_coral |> # re-assigning coral data to plot
+    filter(Site == "LTER_1") |> # filter by Site
+    filter(Date == "2017-04") |> # filter by Date
+    filter(Taxonomy_Substrate_or_Functional_Group == "Acropora" | Taxonomy_Substrate_or_Functional_Group == "Pocillopora") |> # filter by Taxonomy
+    rename(Taxa = Taxonomy_Substrate_or_Functional_Group) # rename taxnomy
+
+
+ggplot(
+  data = moorea_plot, # insert data for ggplot
+  mapping = aes(
+    x = Habitat, # x-axis
+    y = Percent_Cover, # y-axis
+    fill = Taxa #
+    )
+) +
+  geom_boxplot() + 
+  scale_y_continuous(
+    name = "Percent Cover"
+  )
+
+
+moorea_plot |> 
+    mutate(Percent_Cover = Percent_Cover / 100) |> 
+        summarize(
+    avg_size = mean(Percent_Cover, na.rm = TRUE),
+    stan_dev = sd(Percent_Cover, na.rm = TRUE),
+    .by = c(Habitat, Depth, Taxa))
+
+
+```
+
+
+
+## Exercise 3. Short summary
