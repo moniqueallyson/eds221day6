@@ -1,5 +1,5 @@
 ---
-title: "Moorea Coral Data Wrangle"
+title: "Moorea Coral"
 author: 
     name: "Monique Hernandez"
     affiliation: University of California, Santa Barbara
