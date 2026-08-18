@@ -1,0 +1,68 @@
+---
+title: "Moorea Coral"
+author: 
+    name: "Monique Hernandez"
+    affiliation: University of California, Santa Barbara
+date: "Augustt 18, 2026"
+format:
+  html:
+    toc: true
+execute:
+  message: false
+  warning: false
+---
+
+[click here for github link](https://github.com/moniqueallyson/eds221day6) 
+
+# Read Data
+## Moorea Coral Data Frame
+```{r, message=FALSE}
+
+library(tidyverse)
+
+moorea_coral <- read.csv("data/moorea_coral.csv", na = c("", "NA", "ND")) # read moorea_coral.csv and remove missing data
+
+glimpse(moorea_coral) # preview dataset
+
+```
+
+# Visualize Data
+## Exericse 1 & 2. Percent Cover by Habitat, Site, and Taxa
+```{r}
+
+
+moorea_plot <- moorea_coral |> # re-assigning coral data to plot
+    filter(Site == "LTER_1") |> # filter by Site
+    filter(Date == "2017-04") |> # filter by Date
+    filter(Taxonomy_Substrate_or_Functional_Group == "Acropora" | Taxonomy_Substrate_or_Functional_Group == "Pocillopora") |> # filter by Taxonomy
+    rename(Taxa = Taxonomy_Substrate_or_Functional_Group) # rename taxnomy
+
+
+ggplot(
+  data = moorea_plot, # insert data for ggplot
+  mapping = aes(
+    x = Habitat, # x-axis
+    y = Percent_Cover, # y-axis
+    fill = Taxa #
+    )
+) +
+  geom_boxplot() + 
+  scale_y_continuous(
+    name = "Percent Cover"
+  )
+
+
+moorea_plot |> # data frame
+    mutate(Percent_Cover = Percent_Cover / 100) |> # nutate percent cover by dividing by 100
+        summarize( # summarize
+    avg_size = mean(Percent_Cover, na.rm = TRUE), # percent cover mean
+    stan_dev = sd(Percent_Cover, na.rm = TRUE), # percent cover standard deviation
+    .by = c(Habitat, Depth, Taxa)) # .by 
+
+
+```
+
+
+
+## Exercise 3. Findings 
+First, the library(tidyverse) and the csv file containing the Moorea Coral dataset were downloaded and read. Then, a boxplot is visualized by utilizing the aesthetic features to give the x-and-y axis, which are categorized respectively by habitat and percent cover for Acropora and Pocillopora. Lastly, the mean and standard deviation are shown grouped by habitat, depth, and taxa. 
