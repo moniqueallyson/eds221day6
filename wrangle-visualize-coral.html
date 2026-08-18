@@ -93,7 +93,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#visualize-data" id="toc-visualize-data" class="nav-link" data-scroll-target="#visualize-data">Visualize Data</a>
   <ul class="collapse">
   <li><a href="#exericse-1-2.-percent-cover-by-habitat-site-and-taxa" id="toc-exericse-1-2.-percent-cover-by-habitat-site-and-taxa" class="nav-link" data-scroll-target="#exericse-1-2.-percent-cover-by-habitat-site-and-taxa">Exericse 1 &amp; 2. Percent Cover by Habitat, Site, and Taxa</a></li>
-  <li><a href="#exercise-3.-short-summary" id="toc-exercise-3.-short-summary" class="nav-link" data-scroll-target="#exercise-3.-short-summary">Exercise 3. Short summary</a></li>
+  <li><a href="#exercise-3.-findings" id="toc-exercise-3.-findings" class="nav-link" data-scroll-target="#exercise-3.-findings">Exercise 3. Findings</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -197,12 +197,12 @@ $ Percent_Cover                          &lt;dbl&gt; 22.5, 77.5, 49.1, 30.2, 20.
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>moorea_plot <span class="sc">|&gt;</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Percent_Cover =</span> Percent_Cover <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarize</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_size =</span> <span class="fu">mean</span>(Percent_Cover, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">stan_dev =</span> <span class="fu">sd</span>(Percent_Cover, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> <span class="fu">c</span>(Habitat, Depth, Taxa))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>moorea_plot <span class="sc">|&gt;</span> <span class="co"># data frame</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Percent_Cover =</span> Percent_Cover <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">|&gt;</span> <span class="co"># nutate percent cover by dividing by 100</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarize</span>( <span class="co"># summarize</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_size =</span> <span class="fu">mean</span>(Percent_Cover, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># percent cover mean</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">stan_dev =</span> <span class="fu">sd</span>(Percent_Cover, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># percent cover standard deviation</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> <span class="fu">c</span>(Habitat, Depth, Taxa)) <span class="co"># .by </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Habitat Depth        Taxa     avg_size     stan_dev
 1 Fringing     6 Pocillopora 0.0001538462 0.0009607689
@@ -214,8 +214,9 @@ $ Percent_Cover                          &lt;dbl&gt; 22.5, 77.5, 49.1, 30.2, 20.
 </div>
 </div>
 </section>
-<section id="exercise-3.-short-summary" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-3.-short-summary">Exercise 3. Short summary</h2>
+<section id="exercise-3.-findings" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3.-findings">Exercise 3. Findings</h2>
+<p>First, the library(tidyverse) and the csv file containing the Moorea Coral dataset were downloaded and read. Then, a boxplot is visualized by utilizing the aesthetic features to give the x-and-y axis, which are categorized respectively by habitat and percent cover for Acropora and Pocillopora. Lastly, the mean and standard deviation are shown grouped by habitat, depth, and taxa.</p>
 </section>
 </section>
 
